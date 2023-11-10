@@ -10,7 +10,7 @@ from std_msgs.msg import Float32MultiArray
 
 class TrafficLight():
     def __init__(self) -> None:
-        self.model = YOLO('/home/kwanghoon/Desktop/Mando_morai/final/best.pt')  # model 입력
+        self.model = YOLO('./catkin_ws/src/mando_morai/rep/best.pt')  # model 입력
         self.cls_pub = rospy.Publisher('/tf_cls', Float32MultiArray, queue_size=1) # tf_cls publish
         self.result_img = None
         self.msg = Float32MultiArray()
