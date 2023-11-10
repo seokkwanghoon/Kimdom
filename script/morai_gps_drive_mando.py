@@ -19,7 +19,10 @@ from PID import PID
 from morai_sensor import MoraiOdom
 from std_msgs.msg import Float32MultiArray
 from yolo import TrafficLight
+import os
 
+username = os.environ.get('USER') or os.environ.get('USERNAME')
+print(username)
 class GpsDriver():
 
     def __init__(self) -> None:
@@ -69,7 +72,7 @@ class GpsDriver():
         self.x_list, self.y_list = [], []
         self.LOOK_AHEAD_DIST = 0.2
         self.pid_steer = PID(1.8,0,0,1/self.loop_hz,1)
-        self.global_path('./catkin_ws/src/mando_morai/rep/mando_map_test.csv')
+        self.global_path(f'/home/{username}/catkin_ws/src/mando_morai/rep/mando_map_test.csv')
         self.obj=[]
     
     def obs_steer_callback(self, msg):

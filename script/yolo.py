@@ -7,10 +7,13 @@ import rospy
 from ultralytics import YOLO
 import numpy as np
 from std_msgs.msg import Float32MultiArray
+import os
+
+username = os.environ.get('USER') or os.environ.get('USERNAME')
 
 class TrafficLight():
     def __init__(self) -> None:
-        self.model = YOLO('./catkin_ws/src/mando_morai/rep/best.pt')  # model 입력
+        self.model = YOLO(f'/home/{username}/catkin_ws/src/mando_morai/rep/best.pt')  # model 입력
         self.cls_pub = rospy.Publisher('/tf_cls', Float32MultiArray, queue_size=1) # tf_cls publish
         self.result_img = None
         self.msg = Float32MultiArray()
